@@ -18,9 +18,9 @@ Each solution is located in a dedicated folder within the `solutions` directory.
 solutions/
 │
 └── [Solution Name]/
-    ├── starting-repo/         # Canonical starting repository for this solution
+    ├── repo-before/         # Canonical starting repository for this solution
     ├── guide.md               # Step-by-step guide for applying the solution
-    └── resulting-repo/        # Example resulting repository after solution is applied
+    └── repo-after/        # Example resulting repository after solution is applied
 ```
 
 ### Example
@@ -30,8 +30,8 @@ For a solution such as "Migrate SQLAlchemy 1.6 to 2.0," the structure might look
 solutions/
 │
 └── migrate-sqlalchemy-1.6-to-2.0/
-    ├── starting-repo/
+    ├── repo-before/
     ├── guide.md
-    └── resulting-repo/
+    └── repo-after/
 ```
 Each solution’s guide provides context, requirements, and detailed steps to take a developer from the starting repo state to the fully migrated or updated state.
