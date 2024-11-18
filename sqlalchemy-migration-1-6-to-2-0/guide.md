@@ -18,7 +18,7 @@ The migration to SQLAlchemy 2.0 was successfully completed across the codebase. 
 
 3. **Query Syntax Updates**  
    Modernized query calls by adopting new syntax such as `query()` and `where`, replacing deprecated methods.  
-   [View the codemod](https://www.codegen.sh/search/6510?skillType=codemod)
+   [View the codemod](https://www.codegen.sh/search/6508?skillType=codemod)
 
 ---
 
