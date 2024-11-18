@@ -58,3 +58,44 @@ def delete_book(book_id: int, db: Session = Depends(get_db)):
     db.delete(db_book)
     db.commit()
     return db_book
+
+@app.post("/publishers/", response_model=schemas.Publisher)
+def create_publisher(publisher: schemas.PublisherCreate, db: Session = Depends(get_db)):
+    db_publisher = models.Publisher(**publisher.dict())
+    db.add(db_publisher)
+    db.commit()
+    db.refresh(db_publisher)
+    return db_publisher
+
+@app.get("/publishers/", response_model=List[schemas.Publisher])
+def read_publishers(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    publishers = db.query(models.Publisher).offset(skip).limit(limit).all()
+    return publishers
+
+@app.get("/publishers/{publisher_id}", response_model=schemas.Publisher)
+def read_publisher(publisher_id: int, db: Session = Depends(get_db)):
+    publisher = db.query(models.Publisher).filter(models.Publisher.id == publisher_id).first()
+    if not publisher:
+        raise HTTPException(status_code=404, detail="Publisher not found")
+    return publisher
+
+@app.put("/publishers/{publisher_id}", response_model=schemas.Publisher)
+def update_publisher(publisher_id: int, publisher: schemas.PublisherCreate, db: Session = Depends(get_db)):
+    db_publisher = db.query(models.Publisher).filter(models.Publisher.id == publisher_id).first()
+    if not db_publisher:
+        raise HTTPException(status_code=404, detail="Publisher not found")
+    for key, value in publisher.dict().items():
+        setattr(db_publisher, key, value)
+    db.commit()
+    db.refresh(db_publisher)
+    return db_publisher
+
+@app.delete("/publishers/{publisher_id}", response_model=schemas.Publisher)
+def delete_publisher(publisher_id: int, db: Session = Depends(get_db)):
+    db_publisher = db.query(models.Publisher).filter(models.Publisher.id == publisher_id).first()
+    if not db_publisher:
+        raise HTTPException(status_code=404, detail="Publisher not found")
+    db.delete(db_publisher)
+    db.commit()
+    return db_publisher
+
