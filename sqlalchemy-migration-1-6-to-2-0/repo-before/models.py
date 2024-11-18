@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 from database import Base
 
 class Publisher(Base):
@@ -7,7 +7,7 @@ class Publisher(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
-    books = relationship("Book", back_populates="publisher")
+    books = relationship("Book", backref="publisher")
 
 class Book(Base):
     __tablename__ = "books"
@@ -17,4 +17,3 @@ class Book(Base):
     author = Column(String, index=True)
     description = Column(String)
     publisher_id = Column(Integer, ForeignKey("publishers.id"))
-    publisher = relationship("Publisher", back_populates="books")
