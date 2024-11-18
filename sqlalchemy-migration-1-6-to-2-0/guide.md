@@ -10,15 +10,15 @@ The migration to SQLAlchemy 2.0 was successfully completed across the codebase. 
 
 1. **Import Changes**  
    Updated imports to align with SQLAlchemy 2.0 module structures.  
-   [View the changes](https://www.codegen.sh/search/6506?skillType=codemod)
+   [View the codemod](https://www.codegen.sh/search/6506?skillType=codemod)
 
 2. **Relationship Updates**  
    Transitioned from `backref` to `back_populates` and ensured all relationships explicitly define `back_populates`.  
-   [View the changes](codegen.sh/search/6510?skillType=codemodRunning Codemod!)
+   [View the codemod](https://www.codegen.sh/search/6510?skillType=codemod)
 
 3. **Query Syntax Updates**  
    Modernized query calls by adopting new syntax such as `query()` and `where`, replacing deprecated methods.  
-   [View the changes](https://www.codegen.sh/search/6510?skillType=codemod)
+   [View the codemod](https://www.codegen.sh/search/6510?skillType=codemod)
 
 ---
 
