@@ -1,32 +1,64 @@
-# SQLAlchemy 2.0 Migration Report
+# Guide: Migrating from SQLAlchemy 1.6 to 2.0 with Codegen
 
-This document provides a comprehensive overview of the updates made to the codebase during the migration to SQLAlchemy 2.0. The changes include import adjustments, relationship call modifications, and query syntax updates, ensuring compatibility with the latest standards.
+This guide walks you through the steps to migrate your codebase from SQLAlchemy 1.6 to 2.0 using Codegen. Follow along to modernize your imports, relationships, and query syntax while ensuring compatibility with SQLAlchemy 2.0. Each step includes a direct link to the appropriate codemod for easy implementation.
 
 ---
 
-## 🎉 Migration Summary
+## 🎉 Overview of Changes
 
-The migration to SQLAlchemy 2.0 was successfully completed across the codebase. Below is a summary of the key updates:
+The migration focuses on these key updates:
 
-1. **Import Changes**  
-   Updated imports to align with SQLAlchemy 2.0 module structures.  
-   [View the codemod](https://www.codegen.sh/search/6506?skillType=codemod)
+1. **Import Adjustments**  
+   Aligns your code with the updated SQLAlchemy 2.0 module structure.  
+   [Run the Import Codemod](https://www.codegen.sh/search/6506?skillType=codemod)
 
 2. **Relationship Updates**  
-   Transitioned from `backref` to `back_populates` and ensured all relationships explicitly define `back_populates`.  
-   [View the codemod](https://www.codegen.sh/search/6510?skillType=codemod)
+   Refines relationship definitions by replacing `backref` with `back_populates` for explicitness and better readability.  
+   [Run the Relationship Codemod](https://www.codegen.sh/search/6510?skillType=codemod)
 
-3. **Query Syntax Updates**  
-   Modernized query calls by adopting new syntax such as `query()` and `where`, replacing deprecated methods.  
-   [View the codemod](https://www.codegen.sh/search/6508?skillType=codemod)
+3. **Query Syntax Modernization**  
+   Updates queries to leverage the latest syntax like `select()` and `where()`, removing deprecated methods.  
+   [Run the Query Syntax Codemod](https://www.codegen.sh/search/6508?skillType=codemod)
 
 ---
 
-## Migration Process
+## How to Migrate
 
-### 1. Import Updates
+### Step 1: Update Imports
 
-The import structure was updated to ensure compliance with SQLAlchemy 2.0. Specifically:
+SQLAlchemy 2.0 introduces a refined import structure. Use the import codemod to:
 
-- Wildcard imports (`*`) were replaced with explicit imports.
-- The `declarative_base` import was updated to `DeclarativeBase`.
+- Replace wildcard imports (`*`) with explicit imports for better clarity.
+- Update `declarative_base` to `DeclarativeBase`.
+
+👉 [Run the Import Codemod](https://www.codegen.sh/search/6506?skillType=codemod)
+
+---
+
+### Step 2: Refactor Relationships
+
+In SQLAlchemy 2.0, relationships require more explicit definitions. This includes:
+
+- Transitioning from `backref` to `back_populates` for consistency.
+- Explicitly specifying `back_populates` for all relationship definitions.
+
+👉 [Run the Relationship Codemod](https://www.codegen.sh/search/6510?skillType=codemod)
+
+---
+
+### Step 3: Modernize Query Syntax
+
+The query API has been revamped in SQLAlchemy 2.0. Key updates include:
+
+- Switching to `select()` and `where()` for query construction.
+- Replacing any deprecated methods with their modern equivalents.
+
+👉 [Run the Query Syntax Codemod](https://www.codegen.sh/search/6508?skillType=codemod)
+
+---
+
+## Need Help?
+
+If you encounter issues or have specific edge cases not addressed by the codemods, reach out to the Codegen support team or visit the [Codegen Documentation](https://www.codegen.sh/docs) for detailed guidance.
+
+Start your SQLAlchemy 2.0 migration today and enjoy the benefits of a cleaner, modern codebase!
