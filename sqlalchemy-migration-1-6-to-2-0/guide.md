@@ -21,7 +21,7 @@ The migration focuses on these key updates:
    [Run the Query Syntax Codemod](https://www.codegen.sh/search/6508?skillType=codemod)
 
 4. **Relationship Lazy Loading**
-   SQLAlchemy 2.0 introduces a new `lazy` parameter for relationship definitions. Update your relationships to use the new `lazy` parameter for improved performance.
+   SQLAlchemy 2.0 introduces a new `lazy` parameter for relationship definitions. Update your relationships to use the new `lazy` parameter for improved performance.  
    [Run the Relationship Lazy Loading Codemod](https://www.codegen.sh/search/6512?skillType=codemod)
 
 ---
@@ -58,6 +58,8 @@ The query API has been revamped in SQLAlchemy 2.0. Key updates include:
 - Replacing any deprecated methods with their modern equivalents.
 
 👉 [Run the Query Syntax Codemod](https://www.codegen.sh/search/6508?skillType=codemod)
+
+---
 
 ### Step 4: Update Relationship Lazy Loading
 
