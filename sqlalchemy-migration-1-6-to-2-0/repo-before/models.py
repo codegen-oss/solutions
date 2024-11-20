@@ -7,7 +7,7 @@ class Publisher(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
-    books = relationship("Book", backref="publisher")
+    books = relationship("Book", backref="publisher", lazy='selectin', lazy='selectin')
 
 class Book(Base):
     __tablename__ = "books"
