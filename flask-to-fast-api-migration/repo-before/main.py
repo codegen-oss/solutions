@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -11,10 +11,15 @@ books = [
 authors = ["Author A", "Author B", "Author C"]
 categories = ["Fiction", "Non-Fiction", "Biography"]
 
-# Books Endpoints
+# Home Page
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+# Books Page
 @app.route("/books", methods=["GET"])
 def get_books():
-    return jsonify(books)
+    return render_template("books.html", books=books)
 
 @app.route("/books", methods=["POST"])
 def add_book():
@@ -37,10 +42,10 @@ def delete_book(book_id):
     books = [book for book in books if book["id"] != book_id]
     return jsonify({"message": "Book deleted"})
 
-# Authors Endpoints
+# Authors Page
 @app.route("/authors", methods=["GET"])
 def get_authors():
-    return jsonify(authors)
+    return render_template("authors.html", authors=authors)
 
 @app.route("/authors", methods=["POST"])
 def add_author():
@@ -48,10 +53,10 @@ def add_author():
     authors.append(data["name"])
     return jsonify({"name": data["name"]}), 201
 
-# Categories Endpoints
+# Categories Page
 @app.route("/categories", methods=["GET"])
 def get_categories():
-    return jsonify(categories)
+    return render_template("categories.html", categories=categories)
 
 @app.route("/categories", methods=["POST"])
 def add_category():
