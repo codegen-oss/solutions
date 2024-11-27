@@ -24,60 +24,6 @@ def get_book_or_404(book_id: int, db: Session):
         raise HTTPException(status_code=404, detail="Book not found")
     return book
 
-
-# Filter Endpoints
-
-@app.get("/books/search/title", response_model=List[schemas.Book])
-def search_books_by_title(title: str, db: Session = Depends(get_db)):
-    """Filter books by partial title match using `filter`."""
-    books = db.query(models.Book).filter(models.Book.title.ilike(f"%{title}%")).all()
-    if not books:
-        raise HTTPException(status_code=404, detail="No books found with the given title")
-    return books
-
-@app.get("/books/search/author", response_model=List[schemas.Book])
-def search_books_by_author(author: str, db: Session = Depends(get_db)):
-    """Filter books by exact author match using `filter_by`."""
-    books = db.query(models.Book).filter_by(author=author).all()
-    if not books:
-        raise HTTPException(status_code=404, detail="No books found for the given author")
-    return books
-
-@app.get("/publishers/search/name/exact", response_model=List[schemas.Publisher])
-def search_publishers_by_name_exact(name: str, db: Session = Depends(get_db)):
-    """Filter publishers by exact name match using `filter_by`."""
-    publishers = db.query(models.Publisher).filter_by(name=name).all()
-    if not publishers:
-        raise HTTPException(status_code=404, detail="No publishers found with the given name")
-    return publishers
-
-@app.get("/publishers/search/name/partial", response_model=List[schemas.Publisher])
-def search_publishers_by_name_partial(name: str, db: Session = Depends(get_db)):
-    """Filter publishers by partial name match using `filter`."""
-    publishers = db.query(models.Publisher).filter(models.Publisher.name.ilike(f"%{name}%")).all()
-    if not publishers:
-        raise HTTPException(status_code=404, detail="No publishers found matching the given name")
-    return publishers
-
-@app.get("/books/advanced-filter", response_model=List[schemas.Book])
-def advanced_filter_books(
-    author: Optional[str] = None,
-    title: Optional[str] = None,
-    db: Session = Depends(get_db)
-):
-    """
-    Advanced filtering for books using both author and title as optional filters.
-    """
-    query = db.query(models.Book)
-    if author:
-        query = query.filter(models.Book.author.ilike(f"%{author}%"))
-    if title:
-        query = query.filter(models.Book.title.ilike(f"%{title}%"))
-    books = query.all()
-    if not books:
-        raise HTTPException(status_code=404, detail="No books found matching the criteria")
-    return books
-
 # CRUD Operations
 
 @app.post("/books/", response_model=schemas.Book)
