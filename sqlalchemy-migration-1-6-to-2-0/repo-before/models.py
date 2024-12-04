@@ -1,6 +1,11 @@
+from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Column, Integer, String, ForeignKey, Index
 from sqlalchemy.orm import relationship, backref
 from database import Base
+
+
+class Base(DeclarativeBase):
+    pass
 
 class Publisher(Base):
     __tablename__ = "publishers"
