@@ -1,5 +1,6 @@
 # tests/test_classes.py
 
+import pytest
 import unittest
 from unittest.mock import Mock, patch
 from jj_classes.castle import Castle
@@ -8,82 +9,85 @@ from jj_classes.character import Character
 
 class TestCastle(unittest.TestCase):
     """Tests for the Castle class."""
+    @pytest.fixture
+    def setup_testcastle():
+    castle = Castle("Test Castle")
+    
 
-    def setUp(self):
-        """Set up a test castle."""
-        self.castle = Castle("Test Castle")
 
-    def test_castle_name(self):
+    def test_castle_name(setup_testcastle, Castle):
         """Test that the castle name is set correctly."""
-        self.assertEqual(self.castle.name, "Test Castle")
+        assertEqual(castle.name, "Test Castle")
 
-    def test_castle_boss(self):
+    def test_castle_boss(setup_testcastle, Castle):
         """Test that the default boss is Bowser."""
-        self.assertEqual(self.castle.boss, "Bowser")
+        assertEqual(castle.boss, "Bowser")
 
-    def test_castle_world(self):
+    def test_castle_world(setup_testcastle, Castle):
         """Test that the default world is Grass Land."""
-        self.assertEqual(self.castle.world, "Grass Land")
+        assertEqual(castle.world, "Grass Land")
 
-    def test_has_access_granted(self):
+    def test_has_access_granted(setup_testcastle, Castle):
         """Test that access is granted for the correct powerup."""
         character = Mock(powerup="Super Mushroom")
-        self.assertTrue(self.castle.has_access(character))
+        assertTrue(castle.has_access(character))
 
-    def test_has_access_denied(self):
+    def test_has_access_denied(setup_testcastle, Castle):
         """Test that access is denied for an incorrect powerup."""
         character = Mock(powerup="Starman")
-        self.assertFalse(self.castle.has_access(character))
+        assertFalse(castle.has_access(character))
 
-    def test_empty_name_raises_error(self):
+    def test_empty_name_raises_error(setup_testcastle, Castle):
         """Test that an empty castle name raises a ValueError."""
-        with self.assertRaises(ValueError):
+        with assertRaises(ValueError):
             Castle("")
 
 
 class TestCharacter(unittest.TestCase):
     """Tests for the Character class."""
+    @pytest.fixture
+    def setup_testcharacter():
+    character = Character("Mario")
+    
 
-    def setUp(self):
-        """Set up a test character."""
-        self.character = Character("Mario")
 
-    def test_character_name(self):
+    def test_character_name(setup_testcharacter, Character):
         """Test that the character name is set correctly."""
-        self.assertEqual(self.character.name, "Mario")
+        assertEqual(character.name, "Mario")
 
-    def test_default_powerup(self):
+    def test_default_powerup(setup_testcharacter, Character):
         """Test that the default powerup is None."""
-        self.assertIsNone(self.character.powerup)
+        assertIsNone(character.powerup)
 
-    def test_set_powerup(self):
+    def test_set_powerup(setup_testcharacter, Character):
         """Test setting a powerup."""
-        self.character.powerup = "Fire Flower"
-        self.assertEqual(self.character.powerup, "Fire Flower")
+        character.powerup = "Fire Flower"
+        assertEqual(character.powerup, "Fire Flower")
 
-    def test_empty_name_raises_error(self):
+    def test_empty_name_raises_error(setup_testcharacter, Character):
         """Test that an empty character name raises a ValueError."""
-        with self.assertRaises(ValueError):
+        with assertRaises(ValueError):
             Character("")
 
 
 class TestCastleAndCharacter(unittest.TestCase):
     """Tests for the interaction between Castle and Character."""
+    @pytest.fixture
+    def setup_testcastleandcharacter():
+    castle = Castle("Test Castle")
+        character = Character("Mario")
+    
 
-    def setUp(self):
-        """Set up a test castle and character."""
-        self.castle = Castle("Test Castle")
-        self.character = Character("Mario")
 
-    def test_character_has_access(self):
+    def test_character_has_access(setup_testcastleandcharacter, Character):
         """Test that a character with the correct powerup has access."""
-        self.character.powerup = "Super Mushroom"
-        self.assertTrue(self.castle.has_access(self.character))
+        character.powerup = "Super Mushroom"
+        assertTrue(castle.has_access(character))
 
-    def test_character_denied_access(self):
+    def test_character_denied_access(setup_testcastleandcharacter, Character):
         """Test that a character with the wrong powerup is denied access."""
-        self.character.powerup = "Starman"
-        self.assertFalse(self.castle.has_access(self.character))
+        character.powerup = "Starman"
+        assertFalse(castle.has_access(character))
 
 
 if __name__ == "__main__":
