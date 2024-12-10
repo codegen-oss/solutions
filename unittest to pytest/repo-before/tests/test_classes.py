@@ -6,7 +6,7 @@ from jj_classes.castle import Castle
 from jj_classes.character import Character
 
 
-class TestCastle(unittest.TestCase):
+class TestCastle():
     """Tests for the Castle class."""
 
     def setUp(self):
@@ -41,7 +41,7 @@ class TestCastle(unittest.TestCase):
             Castle("")
 
 
-class TestCharacter(unittest.TestCase):
+class TestCharacter():
     """Tests for the Character class."""
 
     def setUp(self):
@@ -67,7 +67,7 @@ class TestCharacter(unittest.TestCase):
             Character("")
 
 
-class TestCastleAndCharacter(unittest.TestCase):
+class TestCastleAndCharacter():
     """Tests for the interaction between Castle and Character."""
 
     def setUp(self):
