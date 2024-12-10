@@ -7,11 +7,11 @@ from jj_classes.castle import Castle
 from jj_classes.character import Character
 
 
-class TestCastle(unittest.TestCase):
+class TestCastle():
     """Tests for the Castle class."""
     @pytest.fixture
     def setup_testcastle():
-    castle = Castle("Test Castle")
+        castle = Castle("Test Castle")
     
 
 
@@ -43,11 +43,11 @@ class TestCastle(unittest.TestCase):
             Castle("")
 
 
-class TestCharacter(unittest.TestCase):
+class TestCharacter():
     """Tests for the Character class."""
     @pytest.fixture
     def setup_testcharacter():
-    character = Character("Mario")
+        character = Character("Mario")
     
 
 
@@ -74,7 +74,6 @@ class TestCastleAndCharacter(unittest.TestCase):
     """Tests for the interaction between Castle and Character."""
     @pytest.fixture
     def setup_testcastleandcharacter():
-    castle = Castle("Test Castle")
         character = Character("Mario")
     
 
